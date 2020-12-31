@@ -1,0 +1,10 @@
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'test/**/*'
+    - 'app/channels/*'
+    - 'node_modules/node-sass/src/**/*'
+    - 'config/**/*'
