@@ -1,0 +1,35 @@
+%h1.my-3
+  = @employee.name
+  = @employee.surname
+
+= link_to 'Back to employees', employees_path, class: 'btn btn-outline-primary'
+
+%h3 Employee orders
+
+%table.table.table-striped.mt-4
+  %tr
+    %th Id
+    %th Bicycle
+    %th Start time
+    %th End time
+    %th Action
+
+  - @employee.orders.each do |order|
+    %tr
+      %td= order.id
+      %td
+        = Bicycle.find(order.bicycle_id).manufacturer
+        = Bicycle.find(order.bicycle_id).serial_number
+      %td= order.start_time.localtime.strftime('%Y/%m/%d %H:%M')
+      %td= order.end_time.localtime.strftime('%Y/%m/%d %H:%M')
+      %td
+        = link_to 'Show', order_path(order), class: 'btn btn-outline-primary'
+        = link_to 'Edit', edit_order_path(order), class: 'btn btn-outline-warning'
+        = link_to 'Delete order', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+
+= link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-outline-warning'
+- if @employee.orders.length > 0
+  %button.btn.btn-outline-danger{ disabled: 'disabled', type: 'button'} Delete employee*
+  %p.mt-3 *delete all employee orders to delete employee
+- else
+  = link_to 'Delete employee', employee_path(@employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'

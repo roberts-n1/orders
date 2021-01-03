@@ -1,0 +1,13 @@
+.row
+  .col-10
+    = render 'shared/errors', obj: @bicycle
+
+    = form_with(model: @bicycle, class: 'shadow p-3 mb-3 bg-info rounded', local: true) do |f|
+      .form-group.row
+        .col-10
+          = f.text_field :manufacturer, class: 'form-control shadow rounded', placeholder: 'Bycycle manufacturer'
+      .form-group.row
+        .col-10
+          = f.text_field :serial_number, rows: 10, class: 'form-control shadow rounded', placeholder: 'Bycycle serial number'
+      .form-group.row.justify-content-center
+        = f.submit class: 'btn btn-outline-light btn-lg'

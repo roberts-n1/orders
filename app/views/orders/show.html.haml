@@ -1,0 +1,26 @@
+%h1.my-3
+  Order number
+  = @order.id
+
+= link_to 'Back', orders_path(), class: 'btn btn-outline-primary'
+
+%table.table.table-striped.mt-4
+  %tr
+    %td Employee:
+    %td
+      = Employee.find(@order.employee_id).name
+      = Employee.find(@order.employee_id).surname
+  %tr
+    %td Bicycle:
+    %td
+      = Bicycle.find(@order.bicycle_id).manufacturer
+      = Bicycle.find(@order.bicycle_id).serial_number
+  %tr
+    %td Start time:
+    %td= @order.start_time.localtime.strftime('%d/%m/%Y %H:%M')
+  %tr
+    %td End time:
+    %td= @order.end_time.localtime.strftime('%d/%m/%Y %H:%M')
+
+= link_to 'Edit', edit_order_path(@order), class: 'btn btn-outline-warning'
+= link_to 'Delete', order_path(@order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'

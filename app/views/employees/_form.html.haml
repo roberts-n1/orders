@@ -1,0 +1,13 @@
+.row
+  .col-10
+    = render 'shared/errors', obj: @employee
+
+    = form_with(model: @employee, class: 'shadow p-3 mb-3 bg-info rounded', local: true) do |f|
+      .form-group.row
+        .col-10
+          = f.text_field :name, class: 'form-control shadow rounded', placeholder: 'Employee name'
+      .form-group.row
+        .col-10
+          = f.text_field :surname, rows: 10, class: 'form-control shadow rounded', placeholder: 'Employee surname'
+      .form-group.row.justify-content-center
+        = f.submit class: 'btn btn-outline-light btn-lg'
