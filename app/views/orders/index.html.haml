@@ -4,7 +4,7 @@
 = link_to 'Bicycles', bicycles_path, class: 'btn btn-outline-primary'
 = link_to 'New order', new_order_path, class: 'btn btn-outline-success'
 
-- if @orders.nil?
+- unless @orders.empty?
   %table.table.table-striped.mt-4
     %tr
       %th Id

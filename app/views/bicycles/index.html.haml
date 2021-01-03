@@ -2,22 +2,23 @@
 = link_to 'Home', root_path, class: 'btn btn-outline-primary'
 = link_to 'New bicycle', new_bicycle_path, class: 'btn btn-outline-success'
 
-%table.table.table-striped.mt-4
-  %tr
-    %th manufacturer
-    %th serial number
-    %th action
-
-  - @bicycles.each do |bicycle|
+- unless @bicycles.empty?
+  %table.table.table-striped.mt-4
     %tr
-      %td= bicycle.manufacturer
-      %td= bicycle.serial_number
-      %td
-        = link_to 'Show', bicycle_path(bicycle), class: 'btn btn-outline-primary'
-        = link_to 'Edit', edit_bicycle_path(bicycle), class: 'btn btn-outline-warning'
-        - if bicycle.orders.length > 0
-          %button.btn.btn-outline-danger{ disabled: 'disabled', type: 'button'} Delete bicycle*
-        - else
-          = link_to 'Delete bicycle', bicycle_path(bicycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+      %th manufacturer
+      %th serial number
+      %th action
 
-%p *delete all bicycle orders to delete bicycle
+    - @bicycles.each do |bicycle|
+      %tr
+        %td= bicycle.manufacturer
+        %td= bicycle.serial_number
+        %td
+          = link_to 'Show', bicycle_path(bicycle), class: 'btn btn-outline-primary'
+          = link_to 'Edit', edit_bicycle_path(bicycle), class: 'btn btn-outline-warning'
+          - if bicycle.orders.length > 0
+            %button.btn.btn-outline-danger{ disabled: 'disabled', type: 'button'} Delete bicycle*
+          - else
+            = link_to 'Delete bicycle', bicycle_path(bicycle), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+
+  %p *delete all bicycle orders to delete bicycle
